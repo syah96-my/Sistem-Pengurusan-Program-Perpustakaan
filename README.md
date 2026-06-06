@@ -1,8 +1,6 @@
 # Sistem Pengurusan Program Perpustakaan
 
-Legacy PHP/XAMPP program management system for library-style organizations.
-
-The archive version is sanitized for reuse: credentials are read from environment variables, the SQL dump contains no participant/program/user data, and the sample library tree is generic.
+Legacy PHP/MYSQL program management system for library-style organizations.
 
 ## Requirements
 
@@ -34,6 +32,24 @@ http://localhost/program-register/login/login.php
 ```
 
 The app detects the project folder name and prefixes internal links, assets, and API calls automatically.
+
+## Production Use Warning
+
+This system has never been used or tested on a production server. It should be treated as a legacy internal system and reviewed carefully before any real deployment.
+
+Before using it outside local testing, you should:
+
+- Review the authentication and authorization logic.
+- Change all default credentials, especially `GM_ADMIN_PASSWORD`.
+- Set a strong, unique `GM_SECRET_KEY`.
+- Check database permissions and avoid using the MySQL root account.
+- Enable HTTPS on the server.
+- Review file and folder permissions.
+- Test all workflows with non-sensitive data first.
+- Back up the database before importing, migrating, or upgrading.
+- Review the code for security issues such as SQL injection, unsafe redirects, exposed errors, and weak session handling.
+
+No production-readiness guarantee is provided. Use this system at your own risk.
 
 ## Hierarchy Rules
 
