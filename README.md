@@ -65,3 +65,26 @@ mysql -u root program_register < db/migrations/2026_05_31_readable_schema_names.
 ```
 
 This migration renames unclear program, participant, note, and statistics columns to readable names and adds indexes used by the dashboard/report tables.
+
+## Third-Party Credits
+
+This archive includes these third-party libraries and assets:
+
+- jQuery 3.7.1 - MIT License - https://jquery.com/
+- DataTables download bundle - includes DataTables, Buttons, Responsive, JSZip, pdfmake, and related export dependencies. See upstream licenses at https://datatables.net/
+- SweetAlert2 11.26.3 - MIT License - https://sweetalert2.github.io/
+- Chart.js - MIT License - https://www.chartjs.org/
+
+Runtime/platform dependencies used to run the system:
+
+- PHP
+- MySQL or MariaDB
+- Apache/XAMPP
+
+These third-party projects remain under their own licenses. Their names and trademarks belong to their respective owners.
+
+## License
+
+This project is released under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+See [LICENSE.md](LICENSE.md) for details.
