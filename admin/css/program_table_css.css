@@ -1,0 +1,297 @@
+/* Move search bar to top right */
+.dt-search {
+    float: right !important;
+    margin-bottom: 10px !important;
+}
+
+/* Keep length selector on the left */
+.dt-length {
+    float: left !important;
+    margin-bottom: 10px !important;
+}
+
+/* Ensure wrapper clears floats */
+.dt-container:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.dt-search input {
+    width: 220px;
+}
+    /* ---------------------------------------------------
+   TABS (Top Navigation)
+--------------------------------------------------- */
+.tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 15px;
+}
+
+.tab-button {
+    padding: 10px 18px;
+    border: 0;
+    background: #f3f4f6;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    font-weight: 600;
+    color: #4b5563;
+    transition: 0.2s ease;
+}
+
+.tab-button:hover {
+    background: #e5e7eb;
+}
+
+.tab-button.active {
+    background: #1b1bb2;
+    color: white;
+}
+
+/* Prevent wrapping of action buttons */
+td.actions-col {
+    white-space: nowrap !important;
+}
+
+/* Ensure buttons stay inline */
+td.actions-col .btn-icon {
+    display: inline-block !important;
+    margin-right: 6px;
+}
+
+
+/* ---------------------------------------------------
+   TAB CONTENT
+--------------------------------------------------- */
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* ---------------------------------------------------
+   TABLE CONTAINER
+--------------------------------------------------- */
+.table-container {
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ---------------------------------------------------
+   DATATABLES GLOBAL STYLE (Modern)
+--------------------------------------------------- */
+table.dataTable {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    font-size: 14px;
+}
+
+table.dataTable thead th {
+    background: #f9fafb;
+    color: #374151;
+    font-weight: 700;
+    padding: 12px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+table.dataTable tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #374151;
+}
+
+table.dataTable tbody tr:hover {
+    background: #f9fafb;
+}
+
+table.dataTable .dt-column-title {
+    font-size: 14px;
+}
+
+/* ---------------------------------------------------
+   DATATABLES: PAGING + SEARCH + LENGTH
+--------------------------------------------------- */
+
+.dt-container {
+    margin-top: 10px;
+}
+
+.dt-search label,
+.dt-length label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.dt-search input,
+.dt-length select {
+    margin-left: 5px;
+    padding: 6px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Paging buttons */
+.dt-paging button {
+    background: white;
+    border: 1px solid #d1d5db;
+    padding: 6px 10px;
+    margin-left: 3px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #4b5563;
+    transition: 0.2s ease;
+}
+
+.dt-paging button:hover:not(.disabled) {
+    background: #1b1bb2;
+    color: white;
+}
+
+.dt-paging .current {
+    background: #1b1bb2;
+    color: white;
+    border-color: #1b1bb2;
+}
+
+/* Info text */
+.dt-info {
+    font-size: 14px;
+    color: #4b5563;
+}
+
+/* ---------------------------------------------------
+   ACTION BUTTONS
+--------------------------------------------------- */.btn-icon:hover {
+    color: #1b1bb2;
+}
+
+/* ---------------------------------------------------
+   BADGE COLORS FOR STATUS
+--------------------------------------------------- */
+td.status-pending {
+    color: #b45309;
+    font-weight: 600;
+}
+
+td.status-verified {
+    color: #059669;
+    font-weight: 600;
+}
+
+td.status-rejected {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.filter-tags {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.tag-filter {
+    padding: 6px 14px;
+    background: #eee;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.tag-filter:hover {
+    background: #ddd;
+}
+
+.tag-filter.active {
+    background: #1b1bb2;
+    color: white;
+    border-color: #1b1bb2;
+}
+/* Desktop: wide action column */
+.col-actions {
+    width: 180px !important;
+    white-space: nowrap;
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+    .col-actions {
+        width: 140px !important;
+    }
+}
+
+/* Mobile: allow wrapping and auto width */
+@media (max-width: 600px) {
+    .col-actions {
+        width: auto !important;      /* allow flexible width */
+        white-space: normal !important; /* icons can wrap */
+        text-align: center;
+    }
+
+    .col-actions .btn-icon {
+        margin: 3px;
+        display: inline-block;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+    .col-actions {
+        font-size: 14px; /* slightly smaller icons */
+    }
+
+    .col-actions .btn-icon {
+        transform: scale(0.9);
+    }
+}
+
+.bulk-actions {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.bulk-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s ease-in-out;
+}
+
+/* Approve = Green */
+#bulk-approve {
+    background: #28a745;
+}
+#bulk-approve:hover {
+    background: #218838;
+}
+
+/* Reject = Orange */
+#bulk-reject {
+    background: #ff9800;
+}
+#bulk-reject:hover {
+    background: #e68900;
+}
+
+/* Remove = Red */
+#bulk-remove {
+    background: #e53935;
+}
+#bulk-remove:hover {
+    background: #c62828;
+}

@@ -1,0 +1,112 @@
+/* ===================== DASHBOARD ===================== */
+
+.dash-section {
+  margin-bottom: 32px;
+}
+
+.dash-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+/* --- Cards --- */
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.dash-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-left: 6px solid #1b1bb2;
+}
+
+.dash-card.warn {
+  border-left-color: #f59e0b;
+}
+
+.dash-card.danger {
+  border-left-color: #dc2626;
+}
+
+.dash-card-title {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.dash-card-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* --- Chart --- */
+.chart-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* --- Table --- */
+.table-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.dash-table th {
+  background: #f8f9fa;
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+
+.dash-table td {
+  padding: 14px;
+  border-top: 1px solid #eee;
+  color: #555;
+}
+
+.dash-table tr:hover {
+  background: #f9fafb;
+}
+
+/* --- Status Pills --- */
+.status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.verified {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}

@@ -1,0 +1,285 @@
+const API = window.GM_API_BASE || "/api/?route=";
+const KEY = window.GM_API_KEY;
+
+/* ------------------------------------------------------
+   Color palette for consistent per-type colors
+------------------------------------------------------ */
+const colorPalette = [
+    "#e57373", "#64b5f6", "#81c784", "#ba68c8", "#ffb74d",
+    "#4db6ac", "#9575cd", "#4fc3f7", "#aed581", "#ff8a65"
+];
+
+function getColorForType(typeName) {
+    let hash = 0;
+    for (let i = 0; i < typeName.length; i++) {
+        hash = typeName.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return colorPalette[Math.abs(hash) % colorPalette.length];
+}
+
+/* ------------------------------------------------------
+   ROLE FILTER LOCKING
+------------------------------------------------------ */
+function applyRoleFilterRules() {
+    const role     = Number(window.GM_ROLE_ID);
+    const libId    = Number(window.GM_LIBRARY_ID);
+    const parentId = Number(window.GM_PARENT_ID);
+    const typeId   = Number(window.GM_TYPE_ID);
+
+    // ROLE 2 -> Branch Admin
+    if (role === 2) {
+        $("#filter-parent")
+            .val(libId)
+            .prop("disabled", true);
+        $("#filter-type option[value='1']").hide();
+        $("#filter-type").prop("disabled", false);
+        $("#search-library").prop("disabled", false);
+    }
+
+    // ROLE 3 -> Library Staff
+    else if (role === 3) {
+        $("#filter-parent")
+            .val(parentId)
+            .prop("disabled", true);
+
+        $("#filter-type")
+            .val(typeId)
+            .prop("disabled", true);
+
+        $("#search-library").prop("disabled", true);
+    }
+}
+
+/* ------------------------------------------------------
+   Load Filters
+------------------------------------------------------ */
+function loadFilters(callback) {
+    const headers = { "X-API-KEY": KEY };
+    let pending = 2;
+    const done = () => (--pending === 0 && callback());
+
+    $.ajax({ url: API + "library_types/list", headers })
+      .done(res => {
+          const el = $("#filter-type")
+                        .empty()
+                        .append(`<option value="">Library Type</option>`);
+          res.types.forEach(t =>
+              el.append(`<option value="${t.id}">${t.type_name}</option>`)
+          );
+      }).always(done);
+
+    $.ajax({ url: API + "libraries/list", headers })
+      .done(res => {
+          const parentSel = $("#filter-parent")
+                               .empty()
+                               .append(`<option value="">Parent Library</option>`);
+          res.libraries.forEach(lib => {
+              if (lib.parent_id === null)
+                  parentSel.append(`<option value="${lib.id}">${lib.name}</option>`);
+          });
+      }).always(done);
+}
+
+/* ------------------------------------------------------
+   Helpers
+------------------------------------------------------ */
+function wrapHeader(text) {
+    return text.split(" ").map(w => `<div>${w}</div>`).join("");
+}
+
+/* ------------------------------------------------------
+   Load Table Data + Apply Role Logic
+------------------------------------------------------ */
+function loadProgramTypes() {
+    $("#loadingBox").show();
+
+    const role     = Number(window.GM_ROLE_ID);
+    const libId    = Number(window.GM_LIBRARY_ID);
+    const parentId = Number(window.GM_PARENT_ID);
+    const typeId   = Number(window.GM_TYPE_ID);
+
+    let params = {};
+    params.role_id = role;
+    // ROLE 2 -> Branch Admin
+    if (role === 2) {
+
+        // branch users + own library
+        params.parent_library_id = libId;
+        params.library_id        = libId;
+
+        if ($("#filter-type").val())
+            params.library_type_id = $("#filter-type").val();
+
+        const q = $("#search-library").val().trim();
+        if (q) params.search = q;
+    }
+
+    // ROLE 3 -> Library Staff
+    else if (role === 3) {
+        params.parent_library_id = parentId;
+        params.library_id        = libId;
+        params.library_type_id   = typeId;
+    }
+
+    // SUPER USERS / HQ / Others
+    else {
+        params.parent_library_id = $("#filter-parent").val();
+        params.library_type_id   = $("#filter-type").val();
+
+        const q = $("#search-library").val().trim();
+        if (q) params.search = q;
+    }
+
+    // Date range (program_start)
+    if ($("#filter-date-from").val())
+        params.date_from = $("#filter-date-from").val();
+
+    if ($("#filter-date-to").val())
+        params.date_to = $("#filter-date-to").val();
+
+
+    $.ajax({
+        url: API + "stats/program-type",
+        headers: { "X-API-KEY": KEY },
+        data: params,
+        success: res => {
+            $("#loadingBox").hide();
+            renderTable(res.results);
+        }
+    });
+}
+
+/* ------------------------------------------------------
+   Render Table + Summary Badges
+------------------------------------------------------ */
+function renderTable(rows) {
+
+    if ($.fn.DataTable.isDataTable("#typeTable")) {
+        $("#typeTable").DataTable().destroy();
+    }
+
+    if (!rows || rows.length === 0) {
+        $("#summary-badges").html("");
+        $("#table-header-row").html("<th>No data</th>");
+        $("#table-body").html("<tr><td>No results found</td></tr>");
+        return;
+    }
+
+    const typeNames    = [...new Set(rows.map(r => r.type_name))].sort();
+    const libraryNames = [...new Set(rows.map(r => r.library_name))];
+
+    /* -------------------------------
+       Summary Badge Section
+    --------------------------------*/
+    let totalPrograms = rows.reduce((a,b)=>a+Number(b.total),0);
+
+    let typeTotals = {};
+    typeNames.forEach(t => typeTotals[t] = 0);
+    rows.forEach(r => typeTotals[r.type_name] += Number(r.total));
+
+    let badgeHTML = `
+        <div class="badge-item badge-accent">
+            Total Programs: ${totalPrograms}
+        </div>
+    `;
+
+    Object.entries(typeTotals).forEach(([type, count]) => {
+        const bg = getColorForType(type);
+        badgeHTML += `
+            <div class="badge-item badge-accent">
+                ${type}: ${count}
+            </div>
+        `;
+    });
+
+    $("#summary-badges").html(badgeHTML);
+
+    /* -------------------------------
+       Build Table Header
+    --------------------------------*/
+    let hdr = `<th>Library</th>`;
+    typeNames.forEach(t =>
+        hdr += `<th class="header-wrap">${wrapHeader(t)}</th>`
+    );
+    $("#table-header-row").html(hdr);
+
+    /* -------------------------------
+       Build Table Body Matrix
+    --------------------------------*/
+    let map = {};
+    libraryNames.forEach(lib => {
+        map[lib] = {};
+        typeNames.forEach(t => map[lib][t] = 0);
+    });
+
+    rows.forEach(r => {
+        map[r.library_name][r.type_name] = Number(r.total);
+    });
+
+    let body = "";
+    libraryNames.forEach(lib => {
+        body += `<tr><td>${lib}</td>`;
+        typeNames.forEach(t =>
+            body += `<td>${map[lib][t]}</td>`
+        );
+        body += `</tr>`;
+    });
+
+    $("#table-body").html(body);
+
+    /* -------------------------------
+       DataTables Init
+    --------------------------------*/
+    setTimeout(() => {
+        $("#typeTable").DataTable({
+            paging: true,
+            pageLength: 20,
+            lengthMenu: [10, 20, 25, 50, 100],
+            searching: false,
+            ordering: true,
+            autoWidth: false,
+            scrollX: false,
+            columnDefs: [
+                { targets: 0, className: "dt-left" },
+                { targets: "_all", className: "dt-center" }
+            ]
+        });
+    }, 10);
+}
+/* ------------------------------------------------------
+   DATE 
+------------------------------------------------------ */
+
+function applyDateRestrictions() {
+    const from = $("#filter-date-from").val();
+    const to   = $("#filter-date-to").val();
+
+    if (from) {
+        $("#filter-date-to").attr("min", from);
+        if (to && to < from) {
+            $("#filter-date-to").val(from);
+        }
+    } else {
+        $("#filter-date-to").removeAttr("min");
+    }
+}
+
+/* ------------------------------------------------------
+   Init Page
+------------------------------------------------------ */
+$(document).ready(function () {
+    loadFilters(() => {
+        applyRoleFilterRules();
+        loadProgramTypes();
+    });
+
+    $("#btn-refresh").click(loadProgramTypes);
+    $("#search-library").on("input", loadProgramTypes);
+    $("#filter-date-from").on("change", function () {
+        applyDateRestrictions();
+        loadProgramTypes();
+    });
+
+    $("#filter-date-to").on("change", loadProgramTypes);
+
+});

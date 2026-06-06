@@ -1,0 +1,9 @@
+@view-transition { navigation: auto; }
+
+/* Small helpers to keep look consistent */
+    .actions-col { white-space: nowrap; }.table-wrap { background:#fff; padding:16px; border-radius:8px; box-shadow:0 0 0 1px rgba(0,0,0,0.03); }
+    .data-table { width:100%; border-collapse:collapse; }
+    .data-table th, .data-table td { padding:10px 12px; border-bottom:1px solid #eee; text-align:left; }
+    .data-table tbody tr:hover { background:#fafafa; }
+    .top-actions { display:flex; gap:8px; align-items:center; }
+    .empty-state { padding:24px; text-align:center; color:#666; }

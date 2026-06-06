@@ -1,0 +1,117 @@
+/* ================================
+   UNIVERSAL MODAL BACKDROP
+================================ */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s ease;
+    z-index: 9999;
+}
+
+.modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ================================
+   UNIVERSAL MODAL CONTENT BOX
+================================ */
+.modal .modal-content {
+    background: #fff;
+    width: 95%;
+    max-width: 480px;
+    border-radius: 10px;
+    padding: 24px 26px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    animation: modalPop 0.25s ease;
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.92); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+/* ================================
+   HEADINGS
+================================ */
+.modal h3 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+/* ================================
+   FORM LABELS & INPUTS
+================================ */
+.modal label {
+    display: block;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.modal input[type="text"],
+.modal input[type="file"],
+.modal input[type="email"],
+.modal select,
+.modal textarea {
+    width: 100%;
+    padding: 9px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.92rem;
+    background: #fafafa;
+    margin-bottom: 12px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+.modal .btn-primary {
+    background: #2e7dff;
+    color: #fff;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-right: 8px;
+}
+
+.modal .btn-primary:hover {
+    background: #1d6ae8;
+}
+
+.modal .btn {
+    background: #eee;
+    color: #333;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.modal .btn:hover {
+    background: #ddd;
+}
+
+/* ================================
+   RESULTS / FEEDBACK AREA
+================================ */
+#bulk-results {
+    font-size: 0.9rem;
+    padding: 8px;
+    background: #fafafa;
+    border-radius: 6px;
+    min-height: 20px;
+}

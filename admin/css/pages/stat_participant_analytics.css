@@ -1,0 +1,175 @@
+@view-transition { navigation: auto; }
+
+/* ======================================================
+   FILTER PANEL
+====================================================== */
+.filter-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e5e9f2;
+}
+
+.filter-row select,
+.filter-row input {
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    min-width: 160px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #111827;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.filter-row select:focus,
+.filter-row input:focus {
+    outline: none;
+    border-color: #5b8cff;
+    box-shadow: 0 0 0 3px rgba(91,140,255,.15);
+}
+
+/* ======================================================
+   DATE GROUP
+====================================================== */
+.date-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.date-group label {
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.date-group input[type="date"] {
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    min-width: 150px;
+}
+
+/* ======================================================
+   SUMMARY BADGES (NUMBERS FIRST)
+====================================================== */
+.badge-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.badge-item {
+    padding: 10px 18px;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.badge-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+/* ======================================================
+   LOADING STATE
+====================================================== */
+#loadingBox {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #6b7280;
+    display: none;
+}
+
+/* ======================================================
+   PARTICIPANT TABLE (NUMBER-HEAVY LAYOUT)
+====================================================== */
+table.dataTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* header */
+table.dataTable thead th {
+    white-space: normal !important;
+    word-break: break-word;
+    vertical-align: bottom !important;
+    font-size: 12.5px;
+    line-height: 1.2;
+    text-align: center !important;
+    background: linear-gradient(180deg, #f8fafc, #eef2f7);
+    color: #374151;
+    font-weight: 600;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* body cells */
+table.dataTable tbody td {
+    white-space: normal !important;
+    word-break: break-word;
+    font-size: 13px;
+    padding: 10px 12px;
+    text-align: center;
+    color: #111827;
+    border-bottom: 1px solid #eef2f7;
+    font-variant-numeric: tabular-nums;
+}
+
+/* first column: library name */
+table.dataTable tbody td:first-child {
+    text-align: left !important;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* zebra striping */
+table.dataTable tbody tr:nth-child(even) {
+    background: #fafbff;
+}
+
+/* hover highlight */
+table.dataTable tbody tr:hover {
+    background: #eef4ff;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+@media (max-width: 768px) {
+    .filter-row {
+        padding: 12px;
+    }
+
+    .badge-item {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+
+    table.dataTable thead th {
+        font-size: 11.5px;
+    }
+
+    table.dataTable tbody td {
+        font-size: 12.5px;
+        padding: 8px;
+    }
+}

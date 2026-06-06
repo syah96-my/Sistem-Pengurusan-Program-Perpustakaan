@@ -1,0 +1,136 @@
+/* ============================
+   SOCMED MODAL SPECIALIZATION
+============================ */
+.socmed-modal {
+    max-width: 560px;
+}
+
+/* Body spacing */
+.socmed-modal .modal-body {
+    padding: 22px 24px;
+}
+
+/* Required star */
+.req {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* Inputs */
+.socmed-modal input,
+.socmed-modal select,
+.socmed-modal textarea {
+    width: 100%;
+    padding: 9px 11px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.socmed-modal input:focus,
+.socmed-modal select:focus,
+.socmed-modal textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.15);
+}
+
+/* Labels */
+.socmed-modal label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Hint text */
+.socmed-modal .hint {
+    font-size: 12px;
+    color: #777;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Grid for platform + date */
+.socmed-modal .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Footer */
+.socmed-modal .modal-footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .socmed-modal .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Numeric fields look lighter */
+.socmed-modal input[type="number"] {
+    text-align: right;
+}
+
+/* Smaller hint text */
+.socmed-modal .hint {
+    font-size: 12px;
+    color: #777;
+    margin-top: 4px;
+    display: block;
+}
+
+/* ============================
+   FILTER BAR
+============================ */
+.filter-tags {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Dropdowns */
+.filter-tags select {
+    min-width: 180px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus state */
+.filter-tags select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
+}
+
+/* Hover */
+.filter-tags select:hover {
+    border-color: #999;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .filter-tags {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-tags select {
+        width: 100%;
+    }
+}
+.actions-col { white-space: nowrap; }

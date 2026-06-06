@@ -1,0 +1,6 @@
+@view-transition { navigation: auto; }
+
+/* small helpers used by scripts (kept local for clarity) */
+    .actions-col { white-space: nowrap; }.swal2-container {
+    z-index: 9999 !important;
+}

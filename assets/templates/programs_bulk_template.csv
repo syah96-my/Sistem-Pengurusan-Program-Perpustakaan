@@ -1,0 +1,2 @@
+library_id,program_type_id,scale_id,mode,program_name,program_start,program_end,platform_id,location,officiated_by,cover_image_url,program_details,document_url,target_group_ids
+1,1,1,physical,Sample Program,2026-01-01 09:00:00,2026-01-01 11:00:00,,Main Hall,Sample Officer,,,,

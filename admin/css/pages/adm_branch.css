@@ -1,0 +1,9 @@
+.actions-col { white-space: nowrap; }.tabs { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+    .tab-button { padding:8px 12px; border-radius:6px; background:#f3f3f3; border:1px solid #ddd; cursor:pointer; }
+    .tab-button.active { background:#3085d6; color:white; border-color: #2b6fb0; }
+    .tab-pane { display:none; }
+    .tab-pane.active { display:block; }
+    .table-container { margin-top:12px; }
+    .modal { display:none; position:fixed; inset:0; align-items:center; justify-content:center; background: rgba(0,0,0,0.4); z-index:9999; }
+    .modal .modal-content { background:#fff; padding:18px; width:820px; max-width:95%; border-radius:8px; }
+    .modal.show { display:flex; }

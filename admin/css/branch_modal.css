@@ -1,0 +1,229 @@
+/* ================================
+   MODAL BACKDROP
+================================ */
+#bulk-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s ease;
+    z-index: 9999;
+}
+
+#bulk-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ================================
+   MODAL BOX
+================================ */
+#bulk-modal .modal-content {
+    background: #fff;
+    width: 95%;
+    max-width: 520px;
+    border-radius: 10px;
+    padding: 24px 26px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    animation: modalPop 0.25s ease;
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.92); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+/* ================================
+   TEXT + HEADINGS
+================================ */
+#bulk-modal h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#bulk-modal p {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+/* ================================
+   FORM FIELDS
+================================ */
+#bulk-modal label {
+    display: block;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+#bulk-modal input[type="text"],
+#bulk-modal select,
+#bulk-modal input[type="file"] {
+    width: 100%;
+    padding: 9px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.92rem;
+    background: #fafafa;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+#bulk-modal input[readonly] {
+    background: #f2f2f2;
+    font-weight: 600;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+#bulk-modal .btn-primary {
+    background: #2e7dff;
+    color: #fff;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-right: 8px;
+}
+
+#bulk-modal .btn-primary:hover {
+    background: #1d6ae8;
+}
+
+#bulk-modal .btn {
+    background: #eee;
+    color: #333;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+#bulk-modal .btn:hover {
+    background: #ddd;
+}
+
+/* ================================
+   RESULTS AREA
+================================ */
+#bulk-results {
+    font-size: 0.9rem;
+    padding: 8px;
+    background: #fafafa;
+    border-radius: 6px;
+    min-height: 20px;
+}
+
+
+/* ================================
+   MODAL BACKDROP
+================================ */
+#child-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s ease;
+    z-index: 9999;
+}
+
+#child-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ================================
+   MODAL BOX
+================================ */
+#child-modal .modal-content {
+    background: #fff;
+    width: 95%;
+    max-width: 480px;
+    border-radius: 10px;
+    padding: 24px 26px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    animation: modalPop 0.25s ease;
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.92); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+/* ================================
+   HEADINGS
+================================ */
+#child-modal h3 {
+    margin: 0 0 14px;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+/* ================================
+   FORM FIELDS
+================================ */
+#child-modal label {
+    display: block;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+#child-modal input[type="text"],
+#child-modal select,
+#child-modal textarea {
+    width: 100%;
+    padding: 9px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.92rem;
+    background: #fafafa;
+    margin-bottom: 12px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+#child-modal .btn-primary {
+    background: #2e7dff;
+    color: #fff;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-right: 8px;
+}
+
+#child-modal .btn-primary:hover {
+    background: #1d6ae8;
+}
+
+#child-modal .btn {
+    background: #eee;
+    color: #333;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+#child-modal .btn:hover {
+    background: #ddd;
+}

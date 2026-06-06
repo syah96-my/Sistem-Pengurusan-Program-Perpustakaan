@@ -1,0 +1,4 @@
+@view-transition { navigation: auto; }
+
+/* small helpers used by scripts (kept local for clarity) */
+    .actions-col { white-space: nowrap; }

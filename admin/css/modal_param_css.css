@@ -1,0 +1,150 @@
+/* ============================
+   MODAL BASE WRAPPER
+   ============================ */
+.modal {
+    display: none;                  /* hidden by default */
+    position: fixed;
+    z-index: 9999;
+    inset: 0;                       /* shorthand for top/right/bottom/left: 0 */
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+}
+
+/* When showing modal */
+.modal.show {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ============================
+   MODAL CONTENT PANEL
+   ============================ */
+.modal-content {
+    background: #fff;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 480px;
+    padding: 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    animation: modalPop .3s ease;
+    overflow: hidden;
+}
+
+/* wide-modal (optional larger width) */
+.modal-content.wide-modal {
+    max-width: 550px;
+}
+
+/* Pop-in animation */
+@keyframes modalPop {
+    0%   { transform: scale(0.92); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ============================
+   HEADER
+   ============================ */
+.modal-header {
+    padding: 16px 20px;
+    background: #f5f6f8;
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.modal-header .btn-icon {
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #555;
+}
+
+.modal-header .btn-icon:hover {
+    color: #d33;
+}
+
+/* ============================
+   BODY
+   ============================ */
+.modal-body {
+    padding: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-row label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.form-row input.form-control {
+    padding: 10px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+}
+
+.form-row input.form-control:focus {
+    border-color: #1b1bb2;
+    box-shadow: 0 0 0 2px rgba(27, 27, 178, 0.12);
+}
+
+/* ============================
+   BUTTONS
+   ============================ */
+.btn-primary,
+.btn-secondary {
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background: #1b1bb2;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #14148c;
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e2e2e2;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 480px) {
+    .modal-content {
+        max-width: 95%;
+    }
+}
