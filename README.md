@@ -25,16 +25,6 @@ php config/create_admin.php
 
 Default setup values are intentionally placeholders. Change `GM_ADMIN_PASSWORD` and `GM_SECRET_KEY` before using the system anywhere outside local testing.
 
-## Local XAMPP Preview
-
-Place the project folder under `htdocs/program-register`, then open:
-
-```text
-http://localhost/program-register/login/login.php
-```
-
-The app detects the project folder name and prefixes internal links, assets, and API calls automatically.
-
 ## Production Use Warning
 
 This system has never been used or tested on a production server. It should be treated as a legacy internal system and reviewed carefully before any real deployment.
